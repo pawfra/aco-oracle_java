@@ -15,6 +15,12 @@ class oracle_java::install::rpm {
       source   => "${oracle_java::install_path}/${oracle_java::filename_real}",
       provider => rpm
     }
+  } elsif $oracle_java::maj_version >= '10' {
+    package { $oracle_java::packagename:
+      ensure   => latest,
+      source   => "${oracle_java::install_path}/${oracle_java::filename_real}",
+      provider => rpm
+    }
   }
   # the procedure is a bit more complicated for Java 6...
   # RPM file is packaged into an unzipsfx archive which has to be extracted

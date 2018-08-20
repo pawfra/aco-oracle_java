@@ -10,6 +10,13 @@ class oracle_java::javalist {
 
   # associate build number to release version
   case $oracle_java::maj_version {
+    '10'     : {
+      case $oracle_java::min_version {
+        '2'     : { $buildnumber   = '+13'
+                    $urlcodeoracle = '/19aef61b38124481863b1413dce1855f' }
+        default : { fail("Unreleased Java SE version ${oracle_java::version_real}") }
+      }
+    }
     '9'     : {
       case $oracle_java::min_version {
         '4'     : { $buildnumber   = '+11'
